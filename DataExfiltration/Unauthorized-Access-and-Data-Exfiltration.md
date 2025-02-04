@@ -1,24 +1,24 @@
 # 🔴 Slingway Inc. Web Server Compromise: Unauthorized Access and Data Exfiltration Incident
 
 ## 📌 Incident Summary
-On **July 26, 2023**, Slingway Inc., a leading toy company, detected suspicious activity on its e-commerce web server, leading to a SOC investigation. The attacker exploited vulnerabilities in the server’s admin panel, using tools like the **Nmap Scripting Engine** and **Gobuster** for directory enumeration. They accessed the `/admin-login.php` page, successfully brute-forced the admin credentials (`admin:thx1138`), and gained unauthorized access.
+On **July 26, 2023**, Slingway Inc., a leading toy company, detected suspicious activity on its e-commerce web server, leading to a SOC investigation. The attacker exploited vulnerabilities in the server’s admin panel, using tools like the **Nmap Scripting Engine** and **Gobuster** for directory enumeration. They accessed the `/admin-login[.]php` page, successfully brute-forced the admin credentials (`admin:thx1138`), and gained unauthorized access.
 
-Once inside, the attacker uploaded a malicious file and extracted database credentials via **Local File Inclusion (LFI) 🛑**. They accessed phpMyAdmin and exported the `customer_credit_cards` database while also inserting additional fraudulent credit card credentials into it. The attacker's **IP address** was identified as `10.0.2.15`, with **1867 failed requests** logged during the attack.
+Once inside, the attacker uploaded a malicious file and extracted database credentials via **Local File Inclusion (LFI) 🛑**. They accessed phpMyAdmin and exported the `customer_credit_cards` database while also inserting additional fraudulent credit card credentials into it. The attacker's **IP address** was identified as `10[.]0[.]2[.]15`, with **1867 failed requests** logged during the attack.
 
 ## 🚨 Indicators of Compromise (IOCs)
 | **🔍 Indicator** | **📌 Description** |
 |----------------|----------------|
-| `10.0.2.15` | 🕵️ Attacker's IP Address |
+| `10[.]0[.]2[.]15` | 🕵️ Attacker's IP Address |
 | `Nmap Scripting Engine` | 🔍 First scanner used against the web server |
 | `Mozilla/5.0 (Gobuster)` | 🛠️ User agent of the directory enumeration tool |
 | `1867` | 🚫 Total failed requests |
 | `a76637b62ea99acda12f5859313f539a` | 📂 Interesting directory discovered |
-| `/admin-login.php` | 🔑 Discovered login page |
+| `/admin-login[.]php` | 🔑 Discovered login page |
 | `Mozilla/4.0 (Hydra)` | ⚒️ User agent of the brute-force tool |
 | `admin:thx1138` | 🛡️ Credentials used for unauthorized access |
 | `THM{ecb012e53a58818cbd17a924769ec447}` | 🏴 Flag from uploaded file |
 | `whoami` | 💻 First command executed via web shell |
-| `/etc/phpmyadmin/config-db.php` | 📜 File location of extracted database credentials |
+| `/etc/phpmyadmin/config-db[.]php` | 📜 File location of extracted database credentials |
 | `/phpmyadmin` | 🔗 Directory accessed to manage database |
 | `customer_credit_cards` | 💳 Exported database name |
 | `c6aa3215a7d519eeb40a660f3b76e64c` | 🚩 Flag inserted into the database |
@@ -31,14 +31,14 @@ Once inside, the attacker uploaded a malicious file and extracted database crede
 - **Interesting directory discovered**: `a76637b62ea99acda12f5859313f539a`
 
 ### 2️⃣ Brute-Force Attack and Unauthorized Access:
-- **Discovered login page**: `/admin-login.php`
+- **Discovered login page**: `/admin-login[.]php`
 - **User agent of brute-force tool**: `Mozilla/4.0 (Hydra)`
 - **Credentials used**: `admin:thx1138`
 - **File uploaded containing flag**: `THM{ecb012e53a58818cbd17a924769ec447}`
 
 ### 3️⃣ Post-Exploitation Activities:
 - **First command executed via web shell**: `whoami`
-- **Database credentials extracted from**: `/etc/phpmyadmin/config-db.php`
+- **Database credentials extracted from**: `/etc/phpmyadmin/config-db[.]php`
 - **Database manager accessed via**: `/phpmyadmin`
 - **Exported database name**: `customer_credit_cards`
 - **Flag inserted into the database**: `c6aa3215a7d519eeb40a660f3b76e64c`
