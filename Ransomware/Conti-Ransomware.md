@@ -1,7 +1,7 @@
 # Incident Response Report: Exchange Server Compromise
 
 ## 1. Executive Summary
-Our organization's Exchange server was compromised by the Conti ransomware group, leveraging vulnerabilities **CVE-2020-0796, CVE-2018-13374, and CVE-2018-13379**.  
+The organization's Exchange server was compromised by the Conti ransomware group, leveraging vulnerabilities **CVE-2020-0796, CVE-2018-13374, and CVE-2018-13379**.  
 As a result, employees were unable to access **Outlook and Exchange Admin Center**. A ransomware note was left on the compromised server.  
 The attack was investigated using **Splunk**, identifying attack vectors, execution methods, and persistence mechanisms.
 
